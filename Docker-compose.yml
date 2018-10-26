@@ -3,6 +3,5 @@ version: '3'
 services:
   nginx-php-fpm:
     image: royaturay/httpresponse
-    restart: always
     ports:
       - 80:80
