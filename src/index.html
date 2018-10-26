@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>http response code</title>
+    <meta charset="UTF-8" />
+    <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="jqueryui.css">
+</head>
+<body>
+    <h1>http response code</h1>
+    <label>選擇狀態</label>
+    <select name="http_response">
+        <option value="">選擇狀態</option>
+        <option value="200">200</option>
+        <option value="201">201</option>
+        <option value="202">202</option>
+        <option value="203">203</option>
+        <option value="204">204</option>
+        <option value="205">205</option>
+        <option value="206">206</option>
+        <option value="300">300</option>
+    </select>
+    <br>
+    <label>回覆狀態</label>
+    <span id="response"></span>
+</body>
+<script>
+    $( function() {
+        $( "select[name=http_response]" ).on('change', function() {
+            if(this.value != ""){
+                $.ajax({
+                  url  : 'ajax.php',
+                  type : 'post',
+                  data : {http_response : this.value}
+                }).done(function(data, statusText, xhr){
+                  var status = xhr.status;                //200
+                  var head = xhr.getAllResponseHeaders(); //Detail header info
+                  console.log(status);
+                  $("#response").html(status);
+                });
+            }
+        });
+    } );
+</script>
+</html>

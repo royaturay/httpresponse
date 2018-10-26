@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  nginx-php-fpm:
+    image: httpresponse
+    restart: always
+    ports:
+      - 80:80
